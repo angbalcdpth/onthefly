@@ -10,7 +10,7 @@ const tripsData = JSON.parse(tripsFile)
 
 const createTripsTable = async () => {
   const createTripsTableQuery = `
-      DROP TABLE IF EXISTS trips;
+      DROP TABLE IF EXISTS trips CASCADE;
 
       CREATE TABLE IF NOT EXISTS trips (
           id serial PRIMARY KEY,
@@ -141,7 +141,7 @@ const createUsersTable = async () => {
     const res = await pool.query(createUsersTableQuery)
     console.log('🎉 users table created successfully')
   } catch (error) {
-    console.error('⚠️ error creating users table', err)
+    console.error('⚠️ error creating users table', error)
   }
 }
 
@@ -161,7 +161,7 @@ const createTripsUsersTable = async () => {
     const res = await pool.query(createTripsUsersTableQuery)
     console.log('🎉 trips_users table created successfully')
   } catch (error) {
-    console.error('⚠️ error creating trips_users table', err)
+    console.error('⚠️ error creating trips_users table', error)
   }
 }
 
